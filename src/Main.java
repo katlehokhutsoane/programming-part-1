@@ -21,7 +21,7 @@ public class Main {
         System.out.println("Password: ");
         String loginPassword = scanner.nextLine();
 
-
+//decision structure is used to verify user authentication
         if (registerUser(loginName, loginPassword)) {
             System.out.println("Login successful!");
         } else {
@@ -29,11 +29,13 @@ public class Main {
         }
     }
 
+    //this checks username underscore and max length
     public static boolean checkUserName(String name) {
         return name.contains("_") && name.length() <= 5;
     }
 
 
+    //password meets complexity requirements
     public static boolean checkPasswordComplexity(String password) {
         return password.matches(".*[A-Z].*") && //atleast one upper case letter
                 password.matches(".*[0-9].*") &&//at least one number
@@ -47,7 +49,7 @@ public class Main {
     }
 
 
-    //login status
+    //cellphone number with regex for 10 digits
     public static boolean checkCellPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("\\d{10,}");//this will check if it has atleast 8 digits and digits only
     }

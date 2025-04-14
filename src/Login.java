@@ -15,6 +15,7 @@ public class Login extends Main {
 
 
 
+        //system responds with confirmation and error messages
         if (isValidUsername) {//this if statement condition checks if the username is to according to its specifications
             System.out.println("Username Successfully Captured");
         } else {
