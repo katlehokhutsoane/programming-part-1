@@ -51,7 +51,7 @@ public class Main {
 
     //cellphone number with regex for 10 digits
     public static boolean checkCellPhoneNumber(String phoneNumber) {
-        return phoneNumber.matches("\\d{10,}");//this will check if it has atleast 8 digits and digits only
+        return phoneNumber.matches("\\d{10,}");//this will check if it has atleast 10 digits and digits only
     }
 
     }
