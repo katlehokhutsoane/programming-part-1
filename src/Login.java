@@ -1,11 +1,18 @@
 public class Login extends Main {
+    public Login(Object checkUserName, Object checkPasswordComplexity, Object checkCellPhoneNumber) {
+        super();
+    }
+
+    public Login() {
+
+    }
+
+
     public void Login() {
 
 
-
-
             //username and password for testing
-            String testName = "katleho_";
+            String testName = "kat_";
             String testPassword = "Pass_123";
             String testPhone = "0812345678";
 

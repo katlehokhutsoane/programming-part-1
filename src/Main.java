@@ -14,6 +14,12 @@ public class Main {
         System.out.println("Please Enter your Number");
         String phoneNumber = scanner.nextLine();
 
+        Object checkUserName = null;
+        Object checkPasswordComplexity = null;
+        Object checkCellPhoneNumber = null;
+
+        Login loginUser=new Login(checkUserName,checkPasswordComplexity,checkCellPhoneNumber);
+        
         //ask for login details
         System.out.println("Please enter your login details:");
         System.out.println("Username: ");
@@ -45,13 +51,14 @@ public class Main {
                 password.length() >= 8;//MINIMUM length of 8 characters
     }
 
+
     //register user
     public static boolean registerUser (String name, String password){
         return name.contains(name) && checkPasswordComplexity(password);
     }
 
 
-    //cellphone number with regex for 10 digits
+    //cellphone number checker with regex for 10 digits implemented
     public static boolean checkCellPhoneNumber (String phoneNumber){
         return phoneNumber.matches("\\d{10,}");//this will check if it has atleast 10 digits and digits only
     }
