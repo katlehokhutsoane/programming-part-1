@@ -1,11 +1,12 @@
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.Test;
 
-public class MainTest {
+public class LoginTest {
     @Test
     public void testCheckUserName_Valid(){
-        assertTrue(Main.checkUserName("kat_"));//underscore and less than or equal to five characters
+        assertTrue(Login.checkUserName("kat_"));//underscore and less than or equal to five characters
 
     }
 
@@ -15,7 +16,7 @@ public class MainTest {
     }
 
     private boolean Main_checkUserName(String katleho) {
-            return false;
+        return false;
     }
 
 
