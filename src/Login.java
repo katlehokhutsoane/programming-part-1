@@ -1,8 +1,6 @@
-import javax.xml.namespace.QName;
+public class Login extends Main {
 
-public class check extends Main {
-
-    void check() {
+    void Login() {
 
         //username and password for testing
         String testName="katleho_";
@@ -49,8 +47,8 @@ public class check extends Main {
             System.out.println("incorrect TRY AGAIN.");
 
         }
-            check check=new check();
-            check.check();
+            Login check=new Login();
+            check.Login();
 
         }
 
