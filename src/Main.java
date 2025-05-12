@@ -14,12 +14,8 @@ public class Main {
         System.out.println("Please Enter your Number");
         String phoneNumber = scanner.nextLine();
 
-        Object checkUserName = null;
-        Object checkPasswordComplexity = null;
-        Object checkCellPhoneNumber = null;
 
-        Login loginUser=new Login(checkUserName,checkPasswordComplexity,checkCellPhoneNumber);
-        
+
         //ask for login details
         System.out.println("Please enter your login details:");
         System.out.println("Username: ");
@@ -28,39 +24,12 @@ public class Main {
         String loginPassword = scanner.nextLine();
 
 
-        if (registerUser(loginName, loginPassword)) {
+        if (Login.registerUser(loginName, loginPassword)) {
             System.out.println("Login successful!");
         } else {
             System.out.println("Login failed. Check your username or password");
         }
 
     }
-
-
-    //this checks username underscore and max length
-    public static boolean checkUserName(String name) {
-        return name.contains("_") && name.length() <= 5;
-    }
-
-
-    //password meets complexity requirements
-    public static boolean checkPasswordComplexity(String password) {
-        return password.matches(".*[A-Z].*") && //atleast one upper case letter
-                password.matches(".*[0-9].*") &&//at least one number
-                password.matches(".*[_].*") &&//atleast ones underscore
-                password.length() >= 8;//MINIMUM length of 8 characters
-    }
-
-
-    //register user
-    public static boolean registerUser (String name, String password){
-        return name.contains(name) && checkPasswordComplexity(password);
-    }
-
-
-    //cellphone number checker with regex for 10 digits implemented
-    public static boolean checkCellPhoneNumber (String phoneNumber){
-        return phoneNumber.matches("\\d{10,}");//this will check if it has atleast 10 digits and digits only
-    }
-
 }
+
