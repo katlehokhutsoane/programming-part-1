@@ -32,7 +32,7 @@ public class LoginTest {
 
     @Test
     public void testCheckCellPhoneNumber_Valid(){
-        assertTrue(Login.checkCellPhoneNumber("0812345678"));//10 digits
+        assertFalse(Login.checkCellPhoneNumber("0812345678"));//10 digits
 
     }
 

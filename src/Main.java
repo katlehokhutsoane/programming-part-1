@@ -1,35 +1,46 @@
+// Main.java
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Login loginSystem = new Login();
 
-        System.out.println("Please Enter your Name");
-        String name = scanner.nextLine();
+        // Registration phase
+        System.out.println("=== REGISTRATION ===");
 
-        System.out.println("Please Enter your Password");
+        System.out.print("Please Enter your Username: ");
+        String username = scanner.nextLine();
+
+        System.out.print("Please Enter your Password: ");
         String password = scanner.nextLine();
 
-        System.out.println("Please Enter your Number");
+        System.out.print("Please Enter your Cell Phone Number: ");
         String phoneNumber = scanner.nextLine();
 
+        // Register the user
+        String registrationResult = loginSystem.registerUser(username, password, phoneNumber);
+        System.out.println(registrationResult);
 
+        // Only proceed to login if registration was successful
+         if(registrationResult.contains("successfully")){
+            System.out.println("\n=== LOGIN ===");
+            System.out.print("Name: ");
+            String Name = scanner.nextLine();
 
-        //ask for login details
-        System.out.println("Please enter your login details:");
-        System.out.println("Username: ");
-        String loginName = scanner.nextLine();
-        System.out.println("Password: ");
-        String loginPassword = scanner.nextLine();
+            System.out.print("Surname: ");
+            String surname = scanner.nextLine();
 
+            String loginResult = loginSystem.returnLoginStatus(Name, surname);
+            System.out.println(loginResult);
 
-        if (Login.registerUser(loginName, loginPassword)) {
-            System.out.println("Login successful!");
-        } else {
-            System.out.println("Login failed. Check your username or password");
+            // If login successful, start messaging system
+            if (loginResult.contains("Welcome")) {
+                Message messageSystem = new Message();
+                messageSystem.showMainMenu(scanner);
+            }
         }
 
+        scanner.close();
     }
 }
-

@@ -1,91 +1,95 @@
-public class Login extends Main {
+// Login.java
+public class Login {
+    private String registeredUsername;
+    private String registeredPassword;
+    private String registeredPhoneNumber;
+    private String registeredname;
+    private String registeredsurname;
 
-
-
-    public void Login() {
-
-
-        //username and password for testing
-        String testName = "kat_";
-        String testPassword = "Pass_123";
-        String testPhone = "0812345678";
-
-
-        boolean checkUserName = checkUserName(testName);
-        boolean checkPasswordComplexity = checkPasswordComplexity(testPassword);
-        boolean checkCellPhoneNumber = checkCellPhoneNumber(testPhone);
-        boolean registerUser = registerUser(testName, testPassword);
-
-
-        //system responds with confirmation and error messages
-        if (checkUserName) {//this if statement condition checks if the username is to according to its specifications
-            System.out.println("Username Successfully Captured");
-        } else {
-            System.out.println("Username is not correctly formatted ,please ensure that your username contains an " +
-                    "underscore and is no more than five characters in length.");
-
-        }
-
-        if (checkPasswordComplexity) {//checks if password is valid
-            System.out.println("Password Successfully Captured");
-        } else {
-            System.out.println("Password is not correctly formatted ,please ensure that your password contains at least " +
-                    "eight characters a capital letter,a number and a special character.");
-
-
-        }
-
-        if (checkCellPhoneNumber) {//checks if phone number is valid
-            System.out.println("correct cellphone insertation");
-        } else {
-            System.out.println("TRY AGAIN invalid phone number.");
-
-        }
-
-
-        if (registerUser) {//checks is it is a valid registration
-            System.out.println("you have been registered successfully");
-        } else {
-            System.out.println("incorrect TRY AGAIN.");
-
-        }
-
-
-        Login check = new Login();
-
+    public static boolean isValidNameOrSurname(String input){
+        return input.matches("[A-Za-z]{2,}");//only letters minimum 2 charactrs
     }
 
 
-    //this checks username underscore and max length
-    public static boolean checkUserName(String name) {
-        return name.contains("_") && name.length() <= 5;
+
+    // Method to check if username contains underscore and is no more than 5 characters
+    public static boolean checkUserName(String username) {
+        return username.contains("_") && username.length() <= 5;
     }
 
-
-    //password meets complexity requirements
+    // Method to check password complexity
     public static boolean checkPasswordComplexity(String password) {
-        return password.matches(".*[A-Z].*") && //atleast one upper case letter
-                password.matches(".*[0-9].*") &&//at least one number
-                password.matches(".*[_].*") &&//atleast ones underscore
-                password.length() >= 8;//MINIMUM length of 8 characters
+        if (password.length() < 8) return false;
+
+        boolean hasCapital = false;
+        boolean hasNumber = false;
+        boolean hasSpecial = false;
+
+        for (char c : password.toCharArray()) {
+            if (Character.isUpperCase(c)) hasCapital = true;
+            if (Character.isDigit(c)) hasNumber = true;
+            if (!Character.isLetterOrDigit(c)) hasSpecial = true;
+        }
+
+        return hasCapital && hasNumber && hasSpecial;
     }
 
-
-    //register user
-    public static boolean registerUser (String name, String password){
-        return checkUserName(name) && checkPasswordComplexity(password);
+    // Method to check cell phone number format (international code + 10 digits)
+    public static boolean checkCellPhoneNumber(String phoneNumber) {
+        // Check for international format: +XX followed by 10 digits
+        if (phoneNumber.length() == 13 && phoneNumber.startsWith("+") &&
+                phoneNumber.substring(1).matches("\\d{12}")) {
+            return true;
+        }
+        // Also accept format like +27718693002 (12 characters total)
+        if (phoneNumber.length() == 12 && phoneNumber.startsWith("+") &&
+                phoneNumber.substring(1).matches("\\d{11}")) {
+            return true;
+        }
+        return false;
     }
 
+    // Method to register user and return appropriate message
+    public String registerUser(String username, String password, String phoneNumber) {
 
-    //cellphone number checker with regex for 10 digits implemented
-    public static boolean checkCellPhoneNumber (String phoneNumber){
-        return phoneNumber.matches("\\d{10,}");//this will check if it has atleast 10 digits and digits only
+        boolean validUsername = checkUserName(username);
+        boolean validPassword = checkPasswordComplexity(password);
+        boolean validPhone = checkCellPhoneNumber(phoneNumber);
+
+
+
+        if (!validUsername) {
+            return "Username is not correctly formatted, please ensure that your username contains an underscore and is no more than five characters in length.";
+        }
+
+        if (!validPassword) {
+            return "Password is not correctly formatted, please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
+        }
+
+        if (!validPhone) {
+            return "Cell phone number incorrectly formatted or does not contain international code.";
+        }
+
+        // Store registration details
+
+        this.registeredUsername = username;
+        this.registeredPassword = password;
+        this.registeredPhoneNumber = phoneNumber;
+
+        return "The two above conditions have been met, and the user has been registered successfully.";
     }
 
+    // Method to verify login credentials
+    public boolean loginUser(String name,String surname) {
+        return name.equals(registeredname) && surname.equals(registeredsurname);
+    }
+
+    // Method to return login status message
+    public String returnLoginStatus(String name,String surname) {
+        if(!isValidNameOrSurname(name)||!isValidNameOrSurname(surname)) {
+            return "invalid name or surname entered. Please enter alphabetic characters only";
+
+        }
+        return "Welcome\t" +name +",its is great to see you again.";
+    }
 }
-
-
-
-
-
-
