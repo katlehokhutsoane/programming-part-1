@@ -1,7 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
 
-//test application
+//test
 import org.junit.Test;
 
 public class LoginTest {

@@ -1,6 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-// MessageTest.java ..
+// MessageTest.java
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Test;
 

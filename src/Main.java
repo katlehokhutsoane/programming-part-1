@@ -5,7 +5,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Login loginSystem = new Login();
 
-        // Registration phase.
+        // Registration phase
         System.out.println("=== REGISTRATION ===");
 
         System.out.print("Please Enter your Username: ");
