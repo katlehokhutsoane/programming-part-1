@@ -2,8 +2,8 @@ public class Login {
     private String registeredUsername;
     private String registeredPassword;
     private String registeredPhoneNumber;
-    private String registeredname;        // FIXED: Initialize these
-    private String registeredsurname;     // FIXED: Initialize these
+    private String registeredname;
+    private String registeredsurname;
 
     public static boolean isValidNameOrSurname(String input){
         return input.matches("[A-Za-z]{2,}");//only letters minimum 2 charactrs
