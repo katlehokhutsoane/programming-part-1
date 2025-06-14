@@ -1,4 +1,3 @@
-// Main.java
 import java.util.Scanner;
 
 public class Main {
@@ -23,20 +22,32 @@ public class Main {
         System.out.println(registrationResult);
 
         // Only proceed to login if registration was successful
-         if(registrationResult.contains("successfully")){
+        if(registrationResult.contains("successfully")){
+
+            System.out.println("\n=== COMPLETE REGISTRATION ===");
+            System.out.print("Please Enter your First Name: ");
+            String firstName = scanner.nextLine();
+
+            System.out.print("Please Enter your Surname: ");
+            String surname = scanner.nextLine();
+
+            // Store the name and surname in login system
+            loginSystem.setUserDetails(firstName, surname);
+
             System.out.println("\n=== LOGIN ===");
             System.out.print("Name: ");
             String Name = scanner.nextLine();
 
             System.out.print("Surname: ");
-            String surname = scanner.nextLine();
+            String surname2 = scanner.nextLine();
 
-            String loginResult = loginSystem.returnLoginStatus(Name, surname);
+            String loginResult = loginSystem.returnLoginStatus(Name, surname2);
             System.out.println(loginResult);
 
-            // If login successful, start messaging system
+            // If login successful, start messaging system with Part 3 functionality
             if (loginResult.contains("Welcome")) {
                 Message messageSystem = new Message();
+
                 messageSystem.showMainMenu(scanner);
             }
         }

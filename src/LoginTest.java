@@ -32,7 +32,7 @@ public class LoginTest {
 
     @Test
     public void testCheckCellPhoneNumber_Valid(){
-        assertFalse(Login.checkCellPhoneNumber("0812345678"));//10 digits
+        assertFalse(Login.checkCellPhoneNumber("+27812345678"));//10 digits
 
     }
 
@@ -44,11 +44,15 @@ public class LoginTest {
 
     @Test
     public void testyRegisterUser_Valid(){
-        assertTrue(Login.checkUserName("kat_"), "pass");//too long with no underscore
+        Login login = new Login();
+        String result = login.registerUser("kat_", "Pass_123", "+27718693002");
+        assertTrue(result.contains("successfully"));
     }
 
     @Test
     public void testyRegisterUser_InvalidPassword(){
-        assertTrue(Login.checkUserName("Kat_"), "pass");//too long with no underscore
+        Login login = new Login();
+        String result = login.registerUser("kat_", "pass", "+27718693002");
+        assertTrue(result.contains("Password is not correctly formatted"));
     }
 }

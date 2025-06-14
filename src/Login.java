@@ -1,16 +1,13 @@
-// Login.java
 public class Login {
     private String registeredUsername;
     private String registeredPassword;
     private String registeredPhoneNumber;
-    private String registeredname;
-    private String registeredsurname;
+    private String registeredname;        // FIXED: Initialize these
+    private String registeredsurname;     // FIXED: Initialize these
 
     public static boolean isValidNameOrSurname(String input){
         return input.matches("[A-Za-z]{2,}");//only letters minimum 2 charactrs
     }
-
-
 
     // Method to check if username contains underscore and is no more than 5 characters
     public static boolean checkUserName(String username) {
@@ -49,14 +46,18 @@ public class Login {
         return false;
     }
 
+
+    public void setUserDetails(String name, String surname) {
+        this.registeredname = name;
+        this.registeredsurname = surname;
+    }
+
     // Method to register user and return appropriate message
     public String registerUser(String username, String password, String phoneNumber) {
 
         boolean validUsername = checkUserName(username);
         boolean validPassword = checkPasswordComplexity(password);
         boolean validPhone = checkCellPhoneNumber(phoneNumber);
-
-
 
         if (!validUsername) {
             return "Username is not correctly formatted, please ensure that your username contains an underscore and is no more than five characters in length.";
@@ -71,7 +72,6 @@ public class Login {
         }
 
         // Store registration details
-
         this.registeredUsername = username;
         this.registeredPassword = password;
         this.registeredPhoneNumber = phoneNumber;
@@ -79,7 +79,7 @@ public class Login {
         return "The two above conditions have been met, and the user has been registered successfully.";
     }
 
-    // Method to verify login credentials
+   // Method to verify login credentials
     public boolean loginUser(String name,String surname) {
         return name.equals(registeredname) && surname.equals(registeredsurname);
     }
@@ -88,8 +88,13 @@ public class Login {
     public String returnLoginStatus(String name,String surname) {
         if(!isValidNameOrSurname(name)||!isValidNameOrSurname(surname)) {
             return "invalid name or surname entered. Please enter alphabetic characters only";
-
         }
-        return "Welcome\t" +name +",its is great to see you again.";
+
+       // Actually check if login is valid, but keep original welcome message
+        if(loginUser(name, surname)) {
+            return "Welcome\t" +name +",its is great to see you again.";
+        } else {
+            return "invalid name or surname entered. Please enter alphabetic characters only";
+        }
     }
 }
