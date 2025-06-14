@@ -79,7 +79,7 @@ public class Login {
         return "The two above conditions have been met, and the user has been registered successfully.";
     }
 
-   // Method to verify login credentials
+   // Method to verify login credentials.
     public boolean loginUser(String name,String surname) {
         return name.equals(registeredname) && surname.equals(registeredsurname);
     }

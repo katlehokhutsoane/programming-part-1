@@ -458,7 +458,7 @@ public class Message {
         return id.toString();
     }
 
-    // Store message method
+    // Store message method.
     public void storeMessage() {
         // Messages are stored in memory via ArrayLists
         System.out.println("Messages stored in JSON format (simulated)");
